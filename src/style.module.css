@@ -52,6 +52,9 @@ svg:hover{
 
 a{
     text-decoration: none;
+}
+
+.nbwplaces a{
     color:rgb(84 74 42 / 60%);
 }
 
@@ -102,7 +105,33 @@ a{
 }
 
 .taskslist{
-    margin-left: 16px;
+    margin-left: 32px;
+}
+
+.task{
+    backdrop-filter: blur(20px);
+    margin-bottom: 12px;
+    padding: 10px;
+    width: 90%;
+    height: 55px;
+    background-color: #E0E0E0;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.taskinfo{
+    margin-left: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.task input[type="checkbox"]{
+    margin-right: 12px;
+    width: 20px;
+    height: 20px;
 }
 
 [contenteditable] {

@@ -25,6 +25,7 @@ function App() {
           <Link className={styles.nbwplaces}>WorkplaceName</Link>
           <Link className={styles.nbwplaces}>WorkplaceName</Link>
         </div>
+        <Link style={{color: "rgb(55,53,47)"}}><span style={{margin: "0", fontSize: "24px"}}>Calendar</span></Link>
       </nav>
       <Workplace></Workplace>
     </>
