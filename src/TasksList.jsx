@@ -6,7 +6,7 @@ function TasksList(props) {
   return (
     <div className={styles.taskslist}>
       {props.tasks.map((task) => {
-        return <Task key={task.id} name={task.name}></Task>;
+        return <Task key={task.id} {...task} deleteTask = {props.deleteTask}></Task>;
       })}
     </div>
   );

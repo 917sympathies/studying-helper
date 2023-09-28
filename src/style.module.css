@@ -1,139 +1,200 @@
-html, body{
-    margin: 0;
-    padding: 0;
-    background-color: white;
-    font-family: 'Open Sans', sans-serif;
-    color: rgb(84 74 42 / 60%);
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  font-family: "Open Sans", sans-serif;
+  color: rgb(84 74 42 / 60%);
 }
 
-.navbar{
-    background-color: rgb(251, 251, 250);
-    font-size: 16px;
-    font-weight: 500;
-    color: rgb(55,53,47);
-    height:100%;
-    width: 220px;
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: hidden;
+.navbar {
+  background-color: rgb(251, 251, 250);
+  font-size: 16px;
+  font-weight: 500;
+  color: rgb(55, 53, 47);
+  height: 100%;
+  width: 220px;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
 }
 
-.navbarheader{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    padding: 12px 0px 12px 0px;
-    width: 100%;
+.navbarheader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  padding: 12px 0px 12px 0px;
+  width: 100%;
 }
 
-.navbarheader:hover{
-    background-color: rgb(55, 53, 47, 0.08);
-    transition: ease-in 0s; 
-    cursor: pointer; 
+.navbarheader:hover {
+  background-color: rgb(55, 53, 47, 0.08);
+  transition: ease-in 0s;
+  cursor: pointer;
 }
 
-svg:hover{
-    background-color: rgb(55, 53, 47, 0.08);
-    border-radius: 3px;
-    transition-delay: 0s;
-    cursor: pointer;
+svg:hover {
+  background-color: rgb(55, 53, 47, 0.08);
+  border-radius: 3px;
+  transition-delay: 0s;
+  cursor: pointer;
 }
 
-.nbheaderuser{
-    display: flex;
-    flex-direction: row;
-    overflow: hidden;
-    padding-left: 6px;
-    padding-right: 6px;
+.nbheaderuser {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  padding-left: 6px;
+  padding-right: 6px;
 }
 
-a{
-    text-decoration: none;
+a {
+  text-decoration: none;
 }
 
-.nbwplaces a{
-    color:rgb(84 74 42 / 60%);
+.nbwplaces a {
+  color: rgb(84 74 42 / 60%);
 }
 
-.nbwplaces{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 6px;
-    margin: 6px 0px 6px 0px;
+.nbwplaces {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 6px;
+  margin: 6px 0px 6px 0px;
 }
 
-.workplace{
-    color: rgb(55,53,47);
-    margin-left: 220px;
+.workplace {
+  color: rgb(55, 53, 47);
+  margin-left: 220px;
 }
 
-.wpnavbar{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content:space-between;
-    padding: 0px 10px 0px 12px;
-    height: 45px;
+.wpnavbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 10px 0px 12px;
+  height: 45px;
 }
 
-.wpnbinfo{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-left: 6px;
-    padding-right: 6px;
-    height: 24px;
+.wpnbinfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 6px;
+  padding-right: 6px;
+  height: 24px;
 }
 
-.wpnbinfo:hover{
-    background-color: rgb(55, 53, 47, 0.08);
-    transition: ease-in 0s; 
-    cursor: pointer; 
-    border-radius: 6px;
+.wpnbinfo:hover {
+  background-color: rgb(55, 53, 47, 0.08);
+  transition: ease-in 0s;
+  cursor: pointer;
+  border-radius: 6px;
 }
 
-.wpnbinfo *{
-    font-size: 14px;
-    flex-grow: 0;
+.wpnbinfo * {
+  font-size: 14px;
+  flex-grow: 0;
 }
 
-.workplacebody{
-    margin-left: 20px;
+.workplacebody {
+  margin-left: 20px;
 }
 
-.taskslist{
-    margin-left: 32px;
+.addtaskbtn {
+  display: flex;
+  flex-direction: row;
 }
 
-.task{
-    backdrop-filter: blur(20px);
-    margin-bottom: 12px;
-    padding: 10px;
-    width: 90%;
-    height: 55px;
-    background-color: #E0E0E0;
-    border-radius: 6px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+/* .addtaskbtn:hover::after{
+    transition: 1s;
+    font-size: 12px;
+    background-color: black;
+    color: grey;
+    position: absolute;
+    border-radius: 2px;
+    padding: 2px 2px;
+    left: 14%; top: 16%;
+    content: "Добавить таск";
+} */
+
+[data-tooltip] {
+  position: relative;
 }
 
-.taskinfo{
-    margin-left: 12px;
-    display: flex;
-    flex-direction: column;
+[data-tooltip]::after {
+  font-size: 12px;
+  border-radius: 2px;
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 14%;
+  top: 16%;
+  background: black;
+  color:grey;
+  padding: 2px 2px;
+  pointer-events: none; 
+  opacity: 0;
+  transition: 1s;
+  transition-delay: 1s;
 }
 
-.task input[type="checkbox"]{
-    margin-right: 12px;
-    width: 20px;
-    height: 20px;
+[data-tooltip]:hover::after {
+  opacity: 1;
+  top: 2em;
+  left: 2em;
+}
+
+.taskslist {
+  margin-left: 32px;
+}
+
+.task {
+  backdrop-filter: blur(20px);
+  margin-top: 12px;
+  margin-bottom: 12px;
+  padding: 10px;
+  width: 90%;
+  height: 55px;
+  background-color: #e0e0e0;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.taskinfo {
+  margin-left: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.task input[type="checkbox"] {
+  margin-right: 12px;
+  width: 20px;
+  height: 20px;
+}
+
+input[type="text"] {
+  padding-left: 6px;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  border-radius: 6px;
+  border-color: rgb(55, 53, 47);
+  border-width: 2px;
+  margin: 0;
+  width: 30%;
+}
+
+::-webkit-input-placeholder {
+  text-align: center;
 }
 
 [contenteditable] {
-    outline: 0px solid transparent;
-  }
+  outline: 0px solid transparent;
+}

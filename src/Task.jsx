@@ -10,7 +10,7 @@ function Task(props){
                     <path id="Vector" d="M6 12H12M12 12H18M12 12V18M12 12V6" stroke="rgb(55,53,47)" strokeWidth={"2"}/>
                 </svg>
             </div>
-            <input type='checkbox'></input>
+            <input type='checkbox' onChange={()=> props.deleteTask(props.id)}></input>
         </div>
     );
 }
