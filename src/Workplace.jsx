@@ -22,7 +22,7 @@ function Workplace() {
   }
 
   return (
-    <div className={styles.workplace}>
+    <div id="workplace" className={styles.workplace}>
       <nav className={styles.wpnavbar}>
         <div className={styles.wpnbinfo}>
           <img
