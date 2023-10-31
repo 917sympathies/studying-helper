@@ -5,6 +5,7 @@ body {
   background-color: white;
   font-family: "Open Sans", sans-serif;
   color: rgb(84 74 42 / 60%);
+  height: 100%;
 }
 
 .navbar {
@@ -36,7 +37,7 @@ body {
   cursor: pointer;
 }
 
-.navbarbody{
+.navbarbody {
   color: rgba(25, 23, 17, 0.6);
   margin-top: 12px;
   display: flex;
@@ -78,8 +79,8 @@ a {
 .workplace {
   color: rgb(55, 53, 47);
   margin-left: 180px;
-  position: fixed;
-  width: calc(1920px - 180px);
+  /* position: fixed;
+  width: calc(1920px - 180px); */
   height: 100%;
 }
 
@@ -113,7 +114,7 @@ a {
   flex-grow: 0;
 }
 
-.logoutbtn{
+.logoutbtn {
   font-size: 14px;
   height: 100%;
   padding: 0px 12px;
@@ -121,13 +122,13 @@ a {
   align-items: center;
 }
 
-.logoutbtn:hover{
+.logoutbtn:hover {
   background-color: rgb(55, 53, 47, 0.08);
   transition: ease-in-out 0.1s;
   cursor: pointer;
 }
 
-.changewsnamemodal{
+.changewsnamemodal {
   background-color: white;
   display: flex;
   flex-direction: row;
@@ -137,33 +138,33 @@ a {
   padding: 6px 6px;
   border-radius: 6px;
   box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
-  0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
   visibility: visible;
   transition-delay: 0;
   transition: ease-in-out 0.2s;
 }
 
-.changewsnamemodalhidden{
+.changewsnamemodalhidden {
   position: absolute;
   transition-delay: 0;
   visibility: hidden;
 }
 
-
-.changewsnamemodal input[type="text"]{
+.changewsnamemodal input[type="text"] {
   color: grey;
   background-color: lightgrey;
   padding: 0px 12px;
   border-radius: 4px;
   text-overflow: ellipsis;
-  border:1px solid grey;
+  border: 1px solid grey;
   outline: none;
   font-family: inherit;
+  text-align: center;
 }
 
-.changewsnamemodal input[type="text"]:focus{
+.changewsnamemodal input[type="text"]:focus {
   outline: none;
-  border:1px solid grey;
+  border: 1px solid grey;
 }
 
 .workplacebody {
@@ -187,9 +188,9 @@ a {
   left: 14%;
   top: 16%;
   background: black;
-  color:grey;
+  color: grey;
   padding: 4px 4px;
-  pointer-events: none; 
+  pointer-events: none;
   opacity: 0;
   transition: 0.5s;
   transition-delay: 0.5s;
@@ -252,7 +253,7 @@ a {
   outline: 0px solid transparent;
 }
 
-.smallnavbar{
+.smallnavbar {
   background-color: rgb(251, 251, 250);
   font-size: 16px;
   font-weight: 500;
@@ -264,4 +265,37 @@ a {
   flex-direction: column;
   align-items: center;
   overflow: hidden;
+}
+
+.authorization {
+  display: flex;
+  flex-direction: column;
+}
+
+.authorization * {
+  margin-top: 8px;
+}
+
+.authorization input {
+  border-radius: 24px;
+  border: 2px solid grey;
+  height: 24px;
+  width: auto;
+}
+
+.authorization input:active {
+  border: 1px solid grey;
+}
+
+.authorization input[type="text"] {
+  text-align: center;
+}
+
+.authorization input[type="password"] {
+  text-align: center;
+}
+
+.authorization input[type="button"] {
+  background-color: antiquewhite;
+  border: 0.1px solid lightgrey;
 }

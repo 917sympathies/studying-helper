@@ -1,29 +1,61 @@
-import styles from "../css/style.module.css"
+import styles from "../css/style.module.css";
 import logo from "../logo.png";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { addWorkspaceUrl, deleteWorkspaceUrl} from "../urls.js";
 
-function Navbar( {username, currentWorkspace, setCurrentWorkspace, workspaces, setWorkspaces}) {
+function Navbar({
+  user,
+  currentWorkspace,
+  setCurrentWorkspace,
+  workspaces,
+  setWorkspaces,
+}) {
   const [showFullNavbar, setNavbar] = useState(true);
 
   function ToggleNavbar() {
-    const workplaceStyle = document.getElementById("workplace").style;
+    const workspaceStyle = document.getElementById("workspace").style;
     if (showFullNavbar) {
-      workplaceStyle.marginLeft = "40px";
+      workspaceStyle.marginLeft = "40px";
       setNavbar(false);
     } else {
-      workplaceStyle.marginLeft = "180px";
+      workspaceStyle.marginLeft = "180px";
       setNavbar(true);
     }
   }
 
-  function AddWorkspace() {
-    setWorkspaces((currentWorkplaces) => {
-      return [
-        ...currentWorkplaces,
-        { id: crypto.randomUUID(), name: "Untitled", todos: [] },
-      ];
+  async function AddWorkspace() {
+    const body = {
+      name: "Untitled",
+      user: user,
+      tasks: [],
+    };
+    await fetch(`${addWorkspaceUrl}?username=${user.username}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setWorkspaces((currentWorkspaces) => {
+          return [...currentWorkspaces, data];
+        });
+      });
+  }
+
+  const handleOpenWorkspace = async (workspace) => {
+    setCurrentWorkspace(workspace);
+  };
+
+  const handleDeleteWorkspace = async (workspace) =>{
+    await fetch(deleteWorkspaceUrl, {
+      method: "POST",
+      headers: {"Content-Type" : "application/json"},
+      body: JSON.stringify(workspace)
     });
+    setWorkspaces(
+      workspaces.filter(ws => ws.id !== workspace.id)
+    );
   }
 
   return showFullNavbar ? (
@@ -43,7 +75,7 @@ function Navbar( {username, currentWorkspace, setCurrentWorkspace, workspaces, s
               fontSize: "14px",
             }}
           >
-            {username}
+            {user.username}
           </div>
         </div>
         <div style={{ paddingTop: "5px" }}>
@@ -98,8 +130,23 @@ function Navbar( {username, currentWorkspace, setCurrentWorkspace, workspaces, s
         <div className={styles.nbwplaces}>
           {workspaces.map((workspace) => {
             return (
-              <div className={styles.nbwplaces} key={workspace.id} onClick={()=> setCurrentWorkspace({id: workspace.id, name: workspace.name, todos: workspace.todos})}>
+              <div style={{display: "flex", flexDirection: "row"}} key={workspace.id}>
+              <div
+                className={styles.nbwplaces}
+                onClick={() => handleOpenWorkspace(workspace)}
+              >
                 {workspace.name}
+              </div>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" style={{margin: "6px 4px 6px 4px"}} onClick={()=>handleDeleteWorkspace(workspace)}>
+                <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+                <g id="SVGRepo_iconCarrier"> <path d="M10 12V17" stroke="rgba(25, 23, 17, 0.6)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path> 
+                <path d="M14 12V17" stroke="rgba(25, 23, 17, 0.6)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path> 
+                <path d="M4 7H20" stroke="rgba(25, 23, 17, 0.6)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path> 
+                <path d="M6 10V18C6 19.6569 7.34315 21 9 21H15C16.6569 21 18 19.6569 18 18V10" stroke="rgba(25, 23, 17, 0.6)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path> 
+                <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="rgba(25, 23, 17, 0.6)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                </path> </g>
+              </svg>
               </div>
             );
           })}
