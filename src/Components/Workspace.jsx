@@ -31,6 +31,7 @@ function Workspace({
 
   useEffect(() => {
     setTasks(currentWorkspace.tasks);
+    setCalendarEvents([])
   }, [currentWorkspace]);
 
   useEffect(() => {
@@ -45,13 +46,22 @@ function Workspace({
             setCalendarEvents((currentEvents) => {
               return [
                 ...currentEvents,
-                { title: element.name, date: element.deadline },
+                { title: element.name, date: element.deadline, backgroundColor: element.deadline === getToday() ? "red" : "lightblue" },
               ];
             });
           });
         });
     }
   }, [isCalendarOpened]);
+
+  const getToday = () => {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+    today = yyyy + '-' + mm + '-' + dd;
+    return today;
+  }
 
   async function AddTask() {
     var utc = new Date().toJSON().slice(0, 10);
@@ -239,6 +249,8 @@ function Workspace({
             plugins={[dayGridPlugin]}
             initialView="dayGridMonth"
             events={calendarEvents}
+            firstDay={"1"}
+            height={"90vh"}
           />
         </div>
       )}
