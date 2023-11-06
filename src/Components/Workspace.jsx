@@ -43,8 +43,10 @@ function Workspace({
         .then((data) => {
           data.forEach((element) => {
             setCalendarEvents((currentEvents) => {
-              return [...currentEvents,
-              {title: element.name, date: element.deadline }];
+              return [
+                ...currentEvents,
+                { title: element.name, date: element.deadline },
+              ];
             });
           });
         });
