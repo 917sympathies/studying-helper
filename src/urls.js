@@ -10,7 +10,9 @@ const deleteWorkspaceUrl = `${url}/api/workspace/delete`
 const changeNameWorkspaceUrl = `${url}/api/workspace/changename`;
 
 const addTaskUrl = `${url}/api/workspace/addtask`;
+const setTaskDeadlineUrl =`${url}/api/task/setDeadline`
 const deleteTaskUrl = `${url}/api/task/delete`;
 const changeTaskStateUrl = `${url}/api/task/changestate`;
+const getAllTasksUrl = `${url}/api/task/getTasks`
 
-export {url, getUserWorkspacesUrl, signInUrl, signUpUrl, addWorkspaceUrl, deleteWorkspaceUrl, changeNameWorkspaceUrl, addTaskUrl, deleteTaskUrl, changeTaskStateUrl};
+export {url, getUserWorkspacesUrl, signInUrl, signUpUrl, addWorkspaceUrl, deleteWorkspaceUrl, changeNameWorkspaceUrl, addTaskUrl, setTaskDeadlineUrl, deleteTaskUrl, changeTaskStateUrl, getAllTasksUrl};

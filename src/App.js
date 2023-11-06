@@ -20,13 +20,15 @@ function App() {
     tasks: [],
   });
 
+  const [isCalendarOpened, setIsCalendarOpened] = useState(false);
+
   useEffect(() => {
     setWorkspaces(user.workspaces);
   }, [user]);
 
   useEffect(() => {
     if(currentWorkspace.name !== '')
-    fetch(`${getUserWorkspacesUrl}?username=${user.username}`, {
+    fetch(`${getUserWorkspacesUrl}/${user.id}`, {
       method: "GET",
       headers: {"Content-Type":"application/json"},
     })
@@ -49,7 +51,9 @@ function App() {
     let target = event.target.id;
     if (target !== "wpnbinfomodal1")
       target !== "wpnbinfomodal2" ? setNameModal(true) : setNameModal(false);
-    else setNameModal(nameModal ^ 1);
+    else
+      if(isCalendarOpened === false) 
+        setNameModal(nameModal ^ 1);
   }
 
   return (
@@ -66,6 +70,7 @@ function App() {
             setCurrentWorkspace={setCurrentWorkspace}
             workspaces={workspaces}
             setWorkspaces={setWorkspaces}
+            setIsCalendarOpened={setIsCalendarOpened}
           ></Navbar>
           <Workspace
             currentWorkspace={currentWorkspace}
@@ -75,6 +80,8 @@ function App() {
             setIsLogged={setIsLogged}
             workspaces={workspaces}
             setWorkspaces={setWorkspaces}
+            isCalendarOpened={isCalendarOpened}
+            userId={user.id}
           ></Workspace>
         </div>
       ) : (

@@ -33,7 +33,7 @@ function Authorization({ setUser, setIsLogged, isLogged }) {
         password: getPassword(),
         workspaces: [],
       };
-      const response = await fetch(signInUrl, {
+      await fetch(signInUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -62,7 +62,7 @@ function Authorization({ setUser, setIsLogged, isLogged }) {
         password: getPassword(),
         workspaces: [],
       };
-      const response = await fetch(signUpUrl, {
+      await fetch(signUpUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
