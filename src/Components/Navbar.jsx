@@ -10,6 +10,7 @@ function Navbar({
   setCurrentWorkspace,
   workspaces,
   setWorkspaces,
+  setIsCalendarOpened
 }) {
   const [showFullNavbar, setNavbar] = useState(true);
 
@@ -30,7 +31,7 @@ function Navbar({
       user: user,
       tasks: [],
     };
-    await fetch(`${addWorkspaceUrl}?username=${user.username}`, {
+    await fetch(`${addWorkspaceUrl}/${user.id}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
@@ -45,6 +46,7 @@ function Navbar({
 
   const handleOpenWorkspace = async (workspace) => {
     setCurrentWorkspace(workspace);
+    setIsCalendarOpened(false);
   };
 
   const handleDeleteWorkspace = async (workspace) =>{
@@ -56,6 +58,14 @@ function Navbar({
     setWorkspaces(
       workspaces.filter(ws => ws.id !== workspace.id)
     );
+  }
+
+  const handleOpenCalendar = () =>{
+    setIsCalendarOpened(true);
+    setCurrentWorkspace({
+      id: "",
+      name: "",
+      tasks: [],})
   }
 
   return showFullNavbar ? (
@@ -151,7 +161,7 @@ function Navbar({
             );
           })}
         </div>
-        <Link style={{ color: "inherit" }}>
+        <Link style={{ color: "inherit" }} onClick={()=>handleOpenCalendar()}>
           <div style={{ margin: "0", fontSize: "16px" }}>Calendar</div>
         </Link>
       </div>
