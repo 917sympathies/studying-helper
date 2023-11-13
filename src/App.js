@@ -28,7 +28,7 @@ function App() {
 
   useEffect(() => {
     if(currentWorkspace.name !== '')
-    fetch(`${getUserWorkspacesUrl}/${user.id}`, {
+    fetch(getUserWorkspacesUrl(user.id), {
       method: "GET",
       headers: {"Content-Type":"application/json"},
     })

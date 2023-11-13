@@ -36,7 +36,7 @@ function Workspace({
 
   useEffect(() => {
     if (isCalendarOpened) {
-      fetch(`${getAllTasksUrl}/${userId}`, {
+      fetch(getAllTasksUrl(userId), {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       })
@@ -66,16 +66,15 @@ function Workspace({
   async function AddTask() {
     var utc = new Date().toJSON().slice(0, 10);
     const newTask = {
-      id: 0,
       name: input === "" ? "Unknown" : input,
       state: "Actual",
       Deadline: utc,
     };
     currentWorkspace.tasks.push(newTask);
-    await fetch(addTaskUrl, {
+    await fetch(addTaskUrl(userId, currentWorkspace.id), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(currentWorkspace),
+      body: JSON.stringify(newTask),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -86,8 +85,8 @@ function Workspace({
   }
 
   async function deleteTask(id) {
-    await fetch(`${deleteTaskUrl}/${id}`, {
-      method: "POST",
+    await fetch(deleteTaskUrl(userId, currentWorkspace.id, id), {
+      method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });
     let taskArr = currentWorkspace.tasks.filter((task) => task.id !== id);
@@ -98,7 +97,7 @@ function Workspace({
 
   async function setTaskDate(id) {
     const date = document.getElementById(`deadline${id}`).value;
-    await fetch(`${setTaskDeadlineUrl}/${id}`, {
+    await fetch(setTaskDeadlineUrl(userId, currentWorkspace.id, id), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(date),
@@ -117,7 +116,7 @@ function Workspace({
   async function toggleTask(task) {
     if (task.state === "Actual") task.state = "Done";
     else task.state = "Actual";
-    await fetch(changeTaskStateUrl, {
+    await fetch(changeTaskStateUrl(userId, currentWorkspace.id), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(task),

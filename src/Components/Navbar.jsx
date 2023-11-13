@@ -31,7 +31,7 @@ function Navbar({
       user: user,
       tasks: [],
     };
-    await fetch(`${addWorkspaceUrl}/${user.id}`, {
+    await fetch(addWorkspaceUrl(user.id), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
@@ -50,10 +50,9 @@ function Navbar({
   };
 
   const handleDeleteWorkspace = async (workspace) =>{
-    await fetch(deleteWorkspaceUrl, {
-      method: "POST",
+    await fetch(deleteWorkspaceUrl(user.id, workspace.id), {
+      method: "DELETE",
       headers: {"Content-Type" : "application/json"},
-      body: JSON.stringify(workspace)
     });
     setWorkspaces(
       workspaces.filter(ws => ws.id !== workspace.id)

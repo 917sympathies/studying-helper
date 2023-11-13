@@ -1,18 +1,32 @@
 const url = "https://localhost:7271";
 
-const getUserWorkspacesUrl = `${url}/api/user/getWorkspaces`
+const getUserWorkspacesUrl = (id) => `${url}/api/user/${id}/workspace`;
 
 const signInUrl = `${url}/api/user/signin`;
 const signUpUrl = `${url}/api/user/signup`;
 
-const addWorkspaceUrl = `${url}/api/workspace/add`;
-const deleteWorkspaceUrl = `${url}/api/workspace/delete`
-const changeNameWorkspaceUrl = `${url}/api/workspace/changename`;
+const addWorkspaceUrl = (userId) => 
+`${url}/api/user/${userId}/workspace`;
 
-const addTaskUrl = `${url}/api/workspace/addtask`;
-const setTaskDeadlineUrl =`${url}/api/task/setDeadline`
-const deleteTaskUrl = `${url}/api/task/delete`;
-const changeTaskStateUrl = `${url}/api/task/changestate`;
-const getAllTasksUrl = `${url}/api/task/getTasks`
+const deleteWorkspaceUrl = (userId, id) => 
+`${url}/api/user/${userId}/workspace/${id}`
+
+const changeNameWorkspaceUrl = (userId, id) => 
+`${url}/api/user/${userId}/workspace/${id}/name`;
+
+const addTaskUrl = (userId, wsId) => 
+`${url}/api/user/${userId}/workspace/${wsId}/task`;
+
+const setTaskDeadlineUrl = (userId, wsId, id) => 
+`${url}/api/user/${userId}/workspace/${wsId}/task/${id}/deadline`;
+
+const deleteTaskUrl = (userId, wsId, id) => 
+`${url}/api/user/${userId}/workspace/${wsId}/task/${id}`;
+
+const changeTaskStateUrl = (userId, wsId) => 
+`${url}/api/user/${userId}/workspace/${wsId}/task/state`;
+
+const getAllTasksUrl = (userId) => 
+`${url}/api/user/${userId}/task`;
 
 export {url, getUserWorkspacesUrl, signInUrl, signUpUrl, addWorkspaceUrl, deleteWorkspaceUrl, changeNameWorkspaceUrl, addTaskUrl, setTaskDeadlineUrl, deleteTaskUrl, changeTaskStateUrl, getAllTasksUrl};
